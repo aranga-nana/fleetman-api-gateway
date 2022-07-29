@@ -3,8 +3,8 @@ pipeline {
 
    environment {
      // You must set the following environment variables
-     ORGANIZATION_NAME=aranga-nana
-     YOUR_DOCKERHUB_USERNAME=aranga 
+     ORGANIZATION_NAME = "aranga-nana"
+     YOUR_DOCKERHUB_USERNAME = "aranga" 
 
      SERVICE_NAME = "fleetman-api-gateway"
      REPOSITORY_TAG="aranga/gateway-jk:${BUILD_ID}"
