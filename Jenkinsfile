@@ -3,6 +3,7 @@ pipeline {
 
    environment {
      // You must set the following environment variables
+     DOCKERHUB_CREDENTIALS = credentials('docker-credentials') 
      ORGANIZATION_NAME = "aranga-nana"
      YOUR_DOCKERHUB_USERNAME = "aranga" 
 
@@ -22,7 +23,12 @@ pipeline {
             sh '''./mvnw clean package'''
          }
       }
-
+      stage('Docker Login') {
+         steps {
+          sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'  
+         }
+         
+      }
       stage('Build and Push Image') {
          steps {
            sh 'docker image build -t ${REPOSITORY_TAG} .'
